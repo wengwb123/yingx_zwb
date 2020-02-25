@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.zwb.dao.VideoMapper">
+
+    <select id="selectByReleaseTime" resultType="com.baizhi.zwb.po.VideoPO">
+      select c.name cateName,
+        v.id id,v.title videoTitle,v.cover cover,v.path path,v.upload_time uploadTime,v.brief description,
+        u.pic_img userPhoto
+        from yingx_category c right join yingx_video v on v.category_id=c.id
+        left join yingx_user u on v.user_id=u.id
+        order by v.upload_time desc
+    </select>
+
+    <select id="selectByLikeVideoName" resultType="com.baizhi.zwb.po.Video2PO">
+        select c.id categoryId,c.name cateName,
+        v.id id,v.title videoTitle,v.cover cover,v.path path,v.upload_time uploadTime,v.brief description,
+        u.id userId,u.username userName
+        from yingx_category c right join yingx_video v on v.category_id=c.id
+        left join yingx_user u on v.user_id=u.id
+        where v.brief like #{content}
+        order by v.upload_time desc
+    </select>
+</mapper>

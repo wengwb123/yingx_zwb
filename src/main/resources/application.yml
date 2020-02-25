@@ -1,0 +1,24 @@
+server:
+  port: 9090
+  servlet:
+    context-path: /yingx
+    jsp:
+      init-parameters:
+        development: true
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/yingx
+    username: root
+    password: root
+  mvc:
+    view:
+      prefix: /
+      suffix: .jsp
+  servlet:
+    multipart:
+      max-file-size: 1GB
+      max-request-size: 10GB
+mybatis:
+  type-aliases-package: com.baizhi.zwb.entity
+  mapper-locations: classpath:com/baizhi/zwb/mapper/*Mapper.xml
