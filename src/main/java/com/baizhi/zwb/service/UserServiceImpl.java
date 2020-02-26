@@ -2,7 +2,9 @@ package com.baizhi.zwb.service;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
+import com.baizhi.zwb.annotation.AddCache;
 import com.baizhi.zwb.annotation.AddLog;
+import com.baizhi.zwb.annotation.DelCache;
 import com.baizhi.zwb.dao.UserMapper;
 import com.baizhi.zwb.entity.Graph;
 import com.baizhi.zwb.entity.Student;
@@ -36,6 +38,7 @@ public class UserServiceImpl implements UserService {
 
     @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     @Override
+    @AddCache
     public List<User> queryAll(Integer page, Integer rows) {
         UserExample example = new UserExample();
         RowBounds bounds = new RowBounds((page-1)*rows,rows);
@@ -44,6 +47,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @AddCache
     public int queryAllCount() {
         int i = userMapper.selectCount(new User());
         return i;
@@ -51,6 +55,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @AddLog(value = "更改用户状态")
+    @DelCache
     public void editStatus(User user) {
         if("1".equals(user.getStatus())){
             user.setStatus("0");
@@ -62,12 +67,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @AddLog(value = "跟新用户头像")
+    @DelCache
     public void editPicImg(User user) {
         userMapper.updateByPrimaryKeySelective(user);
     }
 
     @Override
     @AddLog(value = "添加用户")
+    @DelCache
     public String add(User user) {
         String uId = UUID.randomUUID().toString();
         user.setId(uId);
@@ -84,6 +91,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @DelCache
     public void exportMessage(){
         List<User> users = userMapper.selectAll();
 
@@ -107,6 +115,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @AddCache
     public Map<String, Object> makeGraph() {
         HashMap<String, Object> map = new HashMap<>();
         //查询所有月份男女生注册的人数

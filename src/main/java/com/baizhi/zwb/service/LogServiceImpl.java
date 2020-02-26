@@ -1,5 +1,6 @@
 package com.baizhi.zwb.service;
 
+import com.baizhi.zwb.annotation.AddCache;
 import com.baizhi.zwb.dao.LogMapper;
 import com.baizhi.zwb.entity.Category;
 import com.baizhi.zwb.entity.CategoryExample;
@@ -21,6 +22,7 @@ public class LogServiceImpl implements LogService {
     LogMapper logMapper;
 
     @Override
+    @AddCache
     public Map<String, Object> queryByPage(Integer page, Integer rows) {
         Map<String, Object> map = new HashMap<String,Object>();
         RowBounds rowBounds = new RowBounds((page-1)*rows,rows);

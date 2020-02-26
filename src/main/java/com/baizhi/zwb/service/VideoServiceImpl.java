@@ -1,6 +1,8 @@
 package com.baizhi.zwb.service;
 
+import com.baizhi.zwb.annotation.AddCache;
 import com.baizhi.zwb.annotation.AddLog;
+import com.baizhi.zwb.annotation.DelCache;
 import com.baizhi.zwb.dao.VideoMapper;
 import com.baizhi.zwb.entity.Video;
 import com.baizhi.zwb.entity.VideoExample;
@@ -29,6 +31,7 @@ public class VideoServiceImpl implements VideoService {
     HttpSession session;
 
     @Override
+    @AddCache
     public Map<String, Object> queryByPage(Integer page, Integer rows) {
         Map<String, Object> map = new HashMap<>();
         //分页查询数据
@@ -45,6 +48,7 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     @AddLog(value = "添加视频")
+    @DelCache
     public String add(Video video) {
         String id = UUID.randomUUID().toString();
         video.setId(id);
@@ -55,6 +59,7 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     @AddLog("上传视频和封面")
+    @DelCache
     public void uploadVideo(MultipartFile path, String id) throws IOException {
         //设置视频文件名
         String fileName = new Date().getTime()+path.getOriginalFilename();
@@ -97,6 +102,7 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     @AddLog("删除视频")
+    @DelCache
     public Map<String, Object> deleteVideo(Video video) {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
@@ -126,18 +132,21 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
+    @AddCache
     public List<VideoPO> queryByReleaseTime() {
         List<VideoPO> data = videoMapper.selectByReleaseTime();
         return data;
     }
 
     @Override
+    @AddCache
     public List<Video2PO> queryByLikeVideoName(String content) {
         List<Video2PO> data = videoMapper.selectByLikeVideoName("%"+content+"%");
         return data;
     }
 
     @Override
+    @DelCache
     public void save(Video video,MultipartFile videoFile)throws Exception {
         //设置视频文件名
         String fileName = new Date().getTime()+videoFile.getOriginalFilename();

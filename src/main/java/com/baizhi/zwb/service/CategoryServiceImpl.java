@@ -1,5 +1,6 @@
 package com.baizhi.zwb.service;
 
+import com.baizhi.zwb.annotation.AddCache;
 import com.baizhi.zwb.dao.CategoryMapper;
 import com.baizhi.zwb.entity.Category;
 import com.baizhi.zwb.entity.CategoryExample;
@@ -20,6 +21,7 @@ public class CategoryServiceImpl implements CategoryService {
     CategoryMapper categoryMapper;
 
     @Override
+    @AddCache
     public Map<String, Object> queryByPageAndLevels(Integer page, Integer rows) {
         Map<String, Object> map = new HashMap<String,Object>();
         CategoryExample example = new CategoryExample();
@@ -36,6 +38,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @AddCache
     public Map<String, Object> queryByPageAndParentId(Integer page, Integer rows, String id) {
         Map<String, Object> map = new HashMap<String,Object>();
         CategoryExample example = new CategoryExample();
@@ -52,6 +55,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @AddCache
     public List<Category> queryAllCategory() {
         List<Category> categories = categoryMapper.selectAllCategory();
         return categories;
