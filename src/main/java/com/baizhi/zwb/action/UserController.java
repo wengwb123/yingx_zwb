@@ -109,6 +109,5 @@ public class UserController {
     public Map<String, Object> makeGraph(){
         Map<String, Object> map = userService.makeGraph();
         return map;
-
     }
 }

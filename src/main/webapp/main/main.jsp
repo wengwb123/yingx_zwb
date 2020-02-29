@@ -10,6 +10,10 @@
     <link rel="icon" href="${path}/bootstrap/img/arrow-up.png" type="image/x-icon">
     <link rel="stylesheet" href="${path}/bootstrap/css/bootstrap.css">
 
+    <%--引入goeasy的js文件--%>
+    <script type="text/javascript" src="https://cdn.goeasy.io/goeasy-1.0.3.js"></script>
+    <%--引入echarts--%>
+    <script type="text/javascript" src="${path}/js/echarts.min.js"></script>
     <%--引入jqgrid中主题css--%>
     <link rel="stylesheet" href="${path}/bootstrap/jqgrid/css/css/hot-sneaks/jquery-ui-1.8.16.custom.css">
     <link rel="stylesheet" href="${path}/bootstrap/jqgrid/boot/css/trirand/ui.jqgrid-bootstrap.css">
