@@ -36,7 +36,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     HttpSession session;
 
-    @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
     @Override
     @AddCache
     public List<User> queryAll(Integer page, Integer rows) {

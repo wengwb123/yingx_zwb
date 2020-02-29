@@ -31,7 +31,7 @@ public class UserController {
     @ResponseBody
     @RequestMapping("queryAll")
     public Map<String,Object> queryAll(Integer page,Integer rows){
-        final List<User> users = userService.queryAll(page, rows);
+        List<User> users = userService.queryAll(page, rows);
         int count = userService.queryAllCount();
         int total = (count % rows == 0) ? (count / rows) : (count / rows + 1);
         Map<String, Object> map = new HashMap<String, Object>();
