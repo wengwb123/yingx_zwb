@@ -39,5 +39,6 @@ public class RedisCacheTest {
         valueOperations.set("names",str);
         Object names = valueOperations.get("names");
         System.out.println(names);
+        System.out.println("redis缓存测试结束");
     }
 }
