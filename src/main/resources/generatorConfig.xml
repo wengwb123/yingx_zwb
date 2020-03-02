@@ -41,6 +41,6 @@
         </javaClientGenerator>
         <!--生成对应表及类名-->
         <!--<table tableName="admin" domainObjectName="Admin" ></table>-->
-        <table tableName="yingx_log" domainObjectName="Log" ></table>
+        <table tableName="yingx_permission" domainObjectName="Permission" ></table>
     </context>
 </generatorConfiguration>

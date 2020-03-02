@@ -1,5 +1,6 @@
 <%@page pageEncoding="UTF-8" isELIgnored="false"  %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!doctype html>
 <html lang="en">
@@ -44,12 +45,20 @@
         </div><!-- /.container-fluid -->
     </nav>
 
+    <%--shiro没有认证可以看到的内容--%>
+    <shiro:notAuthenticated>
+    对不起，你还未登陆，请点击<a href="${path}/login/login1.jsp">此处</a>登陆
+    </shiro:notAuthenticated>
+    <%--shiro认证了可以看到的内容--%>
+    <shiro:authenticated>
     <!--栅格系统-->
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-2">
                 <!--左边手风琴部分-->
 
+                <%--判断该主体是否有其中的一个角色--%>
+                <shiro:hasAnyRoles name="admin,sAdmin">
                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                     <div class="panel panel-danger">
                         <div class="panel-heading text-center" role="tab" id="headingOne">
@@ -96,6 +105,10 @@
                             </div>
                         </div>
                     </div>
+                    </shiro:hasAnyRoles>
+
+                    <%--判断该主体是否有其中所有角色--%>
+                    <shiro:hasRole name="sAdmin">
                     <div class="panel panel-info">
                         <div class="panel-heading text-center" role="tab" id="headingfour">
                             <h4 class="panel-title">
@@ -111,6 +124,8 @@
                             </div>
                         </div>
                     </div>
+                    </shiro:hasRole>
+
                 </div>
             </div>
             <div class="col-md-10" id="aaa">
@@ -158,7 +173,7 @@
             </div>
         </div>
     </div>
-
+    </shiro:authenticated>
 
         <!--页脚-->
     <nav class="navbar navbar-default navbar-fixed-bottom">

@@ -25,27 +25,6 @@
     <script src="${path}/login/assets/js/scripts.js"></script>
     <script src="${path}/login/assets/js/jquery.validate.min.js"></script>
 
-    <script type="text/javascript">
-        $(function () {
-            //表单验证
-            $.extend($.validator.messages, {
-                //表单验证  必填验证  需要在要验证的input框上加入  required
-                required: "<span style='color:red'>这是必填字段</span>",
-                //表单验证  最小字符验证  需要在要验证的input框上加入  minlength=4
-                minlength: $.validator.format("<span style='color:red'>最少要输入4个字符</span>")
-            });
-            <fmt:formatDate value=""
-
-            //登陆按钮单击事件
-            $("#loginButtonId").click(function () {
-                var validate = $("#loginForm").valid();
-                if(validate){
-                    location.href="${path}/main/main.jsp";
-                }
-            });
-        });
-    </script>
-
 </head>
 
 <body>
@@ -75,7 +54,7 @@
                     </div>
                     <div class="form-bottom" style="width: 450px">
 
-                        <form role="form" action="" method="post" class="login-form" id="loginForm">
+                        <form role="form" action="${path}/admin/login" method="post" class="login-form" id="loginForm">
                             <span id="msgDiv"></span>
                             <div class="form-group">
                                 <label class="sr-only" for="form-username">Username</label>
@@ -91,7 +70,7 @@
                                     <img id="captchaImage" style="height: 48px" class="captchaImage" src="${pageContext.request.contextPath}/code/getCode">
                                     <a href="#" onclick="document.getElementById('captchaImage').src = '${pageContext.request.contextPath}/code/getCode?'+(new Date()).getTime()">看不起？换一张</a>
                             </div>
-                            <input type="button" style="width: 400px;border:1px solid #9d9d9d;border-radius: 4px;" id="loginButtonId" value="登录">
+                            <input type="submit" style="width: 400px;border:1px solid #9d9d9d;border-radius: 4px;" id="loginButtonId" value="登录">
                         </form>
 
 
